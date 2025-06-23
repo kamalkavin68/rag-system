@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x1f680; Google Drive RAG System</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="-google-drive-rag-system">🚀 Google Drive RAG System</h1>
+<p>A powerful <strong>Retrieval-Augmented Generation (RAG)</strong> system that seamlessly integrates with Google Drive, enabling intelligent document querying and AI-powered responses using <strong>Anthropic Claude</strong>, <strong>ChromaDB</strong>, and <strong>Google Embeddings</strong>.</p>
+<p><img src="https://img.shields.io/badge/python-v3.8+-blue.svg" alt="Python">
+<img src="https://img.shields.io/badge/streamlit-v1.28+-red.svg" alt="Streamlit">
+<img src="https://img.shields.io/badge/langchain-latest-green.svg" alt="LangChain">
+<img src="https://img.shields.io/badge/anthropic-claude--3.5--sonnet-purple.svg" alt="Anthropic">
+<img src="https://img.shields.io/badge/google--ai-embeddings--001-4285f4.svg" alt="Google AI">
+<img src="https://img.shields.io/badge/chromadb-vector--store-orange.svg" alt="ChromaDB"></p>
+<h2 id="-features">✨ Features</h2>
+<ul>
+<li>📁 <strong>Google Drive Integration</strong> - Direct document loading from Google Drive folders</li>
+<li>🔍 <strong>Intelligent Document Search</strong> - Vector-based similarity search using ChromaDB</li>
+<li>🤖 <strong>AI-Powered Responses</strong> - Context-aware responses using Anthropic Claude 3.5 Sonnet</li>
+<li>📄 <strong>PDF Processing</strong> - Automated PDF parsing and text extraction</li>
+<li>🌐 <strong>Web Interface</strong> - User-friendly Streamlit interface</li>
+<li>💾 <strong>Persistent Storage</strong> - ChromaDB vector store with local persistence</li>
+<li>🔄 <strong>Real-time Processing</strong> - Live document processing and querying</li>
+</ul>
+<h2 id="️-system-architecture">🏗️ System Architecture</h2>
+<p><img src="file:///f:\LearningProject\rag-learn\rag-system\documentation\rag-architecture.gif" alt="Screenshot"></p>
+<h3 id="architecture-components">Architecture Components</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Technology</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data Source</strong></td>
+<td>Google Drive API</td>
+<td>Document storage and access</td>
+</tr>
+<tr>
+<td><strong>Document Loader</strong></td>
+<td>LangChain GoogleDriveLoader</td>
+<td>PDF parsing and extraction</td>
+</tr>
+<tr>
+<td><strong>Text Chunking</strong></td>
+<td>RecursiveCharacterTextSplitter</td>
+<td>Document segmentation (1000 chars, 200 overlap)</td>
+</tr>
+<tr>
+<td><strong>Embeddings</strong></td>
+<td>Google Generative AI (embedding-001)</td>
+<td>Vector representation generation</td>
+</tr>
+<tr>
+<td><strong>Vector Database</strong></td>
+<td>ChromaDB</td>
+<td>Similarity search and storage</td>
+</tr>
+<tr>
+<td><strong>Retrieval</strong></td>
+<td>LangChain VectorStoreRetriever</td>
+<td>Context-aware document retrieval</td>
+</tr>
+<tr>
+<td><strong>Generation</strong></td>
+<td>Anthropic Claude 3.5 Sonnet</td>
+<td>AI response generation</td>
+</tr>
+<tr>
+<td><strong>Interface</strong></td>
+<td>Streamlit</td>
+<td>Web-based user interface</td>
+</tr>
+</tbody>
+</table>
+<h2 id="️-setup-instructions">🛠️ Setup Instructions</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Python 3.8+</li>
+<li>Google Cloud Project with Drive API enabled</li>
+<li>Anthropic API access (via AWS Bedrock)</li>
+<li>Google AI API key</li>
+</ul>
+<h3 id="1-clone-repository">1. Clone Repository</h3>
+<pre><code class="language-bash">git <span class="hljs-built_in">clone</span> https://github.com/your-username/google-drive-rag.git
+<span class="hljs-built_in">cd</span> google-drive-rag
+</code></pre>
+<h3 id="2-install-dependencies">2. Install Dependencies</h3>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<h3 id="3-environment-setup">3. Environment Setup</h3>
+<p>Create a <code>.env</code> file in the root directory:</p>
+<pre><code class="language-env"># Google AI API Key
+GOOGLE_API_KEY=your_google_api_key_here
+
+# AWS Credentials for Anthropic Bedrock
+AWS_ACCESS_KEY_ID=your_aws_access_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+AWS_REGION=ap-southeast-2
+
+# Optional: Custom model configurations
+EMBEDDING_MODEL=models/embedding-001
+ANTHROPIC_MODEL=arn:aws:bedrock:ap-southeast-2:123367639755:inference-profile/apac.anthropic.claude-3-5-sonnet-20240620-v1:0
+</code></pre>
+<h3 id="4-google-drive-authentication">4. Google Drive Authentication</h3>
+<ol>
+<li>Create a Google Cloud Project</li>
+<li>Enable Google Drive API</li>
+<li>Create service account credentials</li>
+<li>Download credentials JSON file</li>
+<li>Place credentials as <code>secret/credentials.json</code></li>
+<li>Generate token file (will be created automatically on first run)</li>
+</ol>
+<pre><code class="language-bash"><span class="hljs-built_in">mkdir</span> secret
+<span class="hljs-comment"># Place your credentials.json file in the secret folder</span>
+</code></pre>
+<h3 id="5-run-application">5. Run Application</h3>
+<pre><code class="language-bash">streamlit run main.py
+</code></pre>
+<h3 id="6-run-debug-mode">6. Run Debug Mode</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># Run with debug logging</span>
+streamlit run main.py --logger.level=debug
+</code></pre>
+<p>Navigate to <code>http://localhost:8501</code> in your browser.</p>
+<h2 id="-performance-optimizations">📊 Performance Optimizations</h2>
+<h3 id="current-optimizations">Current Optimizations</h3>
+<h4 id="-document-processing">🔧 <strong>Document Processing</strong></h4>
+<ul>
+<li><strong>Chunking Strategy</strong>: 1000 character chunks with 200 character overlap for optimal context preservation</li>
+<li><strong>Batch Processing</strong>: Efficient document loading and processing pipeline</li>
+<li><strong>Memory Management</strong>: Session state management for persistent data</li>
+</ul>
+<h4 id="-vector-operations">🚀 <strong>Vector Operations</strong></h4>
+<ul>
+<li><strong>Similarity Search</strong>: Top-K retrieval (K=4) for relevant context</li>
+<li><strong>Persistent Storage</strong>: ChromaDB local persistence reduces reprocessing</li>
+<li><strong>Embedding Caching</strong>: Google's embedding-001 model for consistent vectors</li>
+</ul>
+<h4 id="-response-generation">🎯 <strong>Response Generation</strong></h4>
+<ul>
+<li><strong>Context Optimization</strong>: Focused context injection for relevant responses</li>
+<li><strong>Token Management</strong>: 5000 max tokens for comprehensive responses</li>
+<li><strong>Chat History</strong>: Maintained conversation context for better continuity</li>
+</ul>
+<h2 id="-usage-examples">💡 Usage Examples</h2>
+<h3 id="basic-document-query">Basic Document Query</h3>
+<pre><code class="language-python"><span class="hljs-comment"># Example: Loading HR Policy Documents</span>
+folder_id = <span class="hljs-string">&quot;1a2b3c4d5e6f7g8h9i0j&quot;</span>  <span class="hljs-comment"># Your Google Drive folder ID</span>
+query = <span class="hljs-string">&quot;What is the company&#x27;s vacation policy?&quot;</span>
+
+<span class="hljs-comment"># Expected Response:</span>
+<span class="hljs-comment"># &quot;Based on the HR policy document, employees are entitled to </span>
+<span class="hljs-comment"># 15 days of paid vacation per year, with additional days </span>
+<span class="hljs-comment"># earned based on tenure...&quot;</span>
+</code></pre>
+<h2 id="-future-enhancements">📈 Future Enhancements</h2>
+<ul>
+<li><strong>Multi-format Support</strong>: Word docs, PowerPoint, Excel files
+<ul>
+<li>Currently only processes PDF files. This would add support for other document formats.</li>
+</ul>
+</li>
+<li><strong>Advanced Search</strong>: Hybrid search combining dense and sparse retrieval
+<ul>
+<li>Combines two search methods for better results (like Dense retrieval and Sparse retrieval)</li>
+</ul>
+</li>
+<li><strong>User Authentication</strong>: Multi-user support with access controls
+<ul>
+<li>Allow multiple users with different access levels and personal chat histories.</li>
+</ul>
+</li>
+<li><strong>Real-time Indexing</strong>: Automatic document updates and re-indexing
+<ul>
+<li>Automatically detect when documents are added/modified in Google Drive and update the vector database.</li>
+</ul>
+</li>
+<li><strong>Analytics Dashboard</strong>: Usage statistics and performance metrics
+<ul>
+<li>Visual dashboard showing system usage, popular queries, response times, and user activity.</li>
+</ul>
+</li>
+<li><strong>API Endpoints</strong>: REST API for programmatic access
+<ul>
+<li>REST API allowing other applications to interact with your RAG system programmatically.</li>
+</ul>
+</li>
+</ul>
+<h2 id="-acknowledgments">🙏 Acknowledgments</h2>
+<ul>
+<li><a href="https://langchain.com/">LangChain</a> for the RAG framework</li>
+<li><a href="https://anthropic.com/">Anthropic</a> for Claude AI model</li>
+<li><a href="https://ai.google/">Google AI</a> for embedding models</li>
+<li><a href="https://streamlit.io/">Streamlit</a> for the web interface</li>
+<li><a href="https://www.trychroma.com/">ChromaDB</a> for vector storage</li>
+</ul>
+<hr>
+<p><strong>Built with ❤️ and curiosity for AI innovation</strong></p>
+<p><a href="https://github.com/your-username/google-drive-rag">⭐ Star this repo</a> | <a href="https://github.com/your-username/google-drive-rag/issues">🐛 Report Bug</a> | <a href="https://github.com/your-username/google-drive-rag/issues">💡 Request Feature</a></p>
+
+            
+            
+        </body>
+        </html>
