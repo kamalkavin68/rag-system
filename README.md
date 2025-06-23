@@ -48,7 +48,7 @@ A powerful **Retrieval-Augmented Generation (RAG)** system that seamlessly integ
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/google-drive-rag.git
+git clone https://github.com/kamalkavin68/rag-system.git
 cd google-drive-rag
 ```
 
@@ -88,6 +88,7 @@ ANTHROPIC_MODEL=arn:aws:bedrock:ap-southeast-2:123367639755:inference-profile/ap
 ```bash
 mkdir secret
 # Place your credentials.json file in the secret folder
+# Place your token.json file in the secret folder
 ```
 
 ### 5. Run Application
