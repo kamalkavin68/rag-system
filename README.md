@@ -172,4 +172,4 @@ query = "What is the company's vacation policy?"
 
 **Built with ❤️ and curiosity for AI innovation**
 
-[⭐ Star this repo](https://github.com/your-username/google-drive-rag) | [🐛 Report Bug](https://github.com/your-username/google-drive-rag/issues) | [💡 Request Feature](https://github.com/your-username/google-drive-rag/issues)
+[⭐ Star this repo]( https://github.com/kamalkavin68/rag-system) | [🐛 Report Bug](https://github.com/kamalkavin68/rag-system/issues) | [💡 Request Feature](https://github.com/kamalkavin68/rag-system/issues)
