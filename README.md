@@ -49,7 +49,7 @@ A powerful **Retrieval-Augmented Generation (RAG)** system that seamlessly integ
 
 ```bash
 git clone https://github.com/kamalkavin68/rag-system.git
-cd google-drive-rag
+cd rag-system
 ```
 
 ### 2. Install Dependencies
