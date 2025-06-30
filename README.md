@@ -25,8 +25,11 @@ A powerful **Retrieval-Augmented Generation (RAG)** system that seamlessly integ
 
 ## Query Transformation
 
-
 ![Query Flow](./documentation/query-transformation.svg)
+
+## Chunking Strategies
+
+![Query Flow](./documentation/Chunking Strategies.svg)
 
 
 ### Architecture Components
