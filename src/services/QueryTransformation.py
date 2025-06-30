@@ -34,15 +34,15 @@ You are a helpful assistant.
 INSTRUCTIONS:
 - If the query is already a complete, grammatical question, do not change it.
 - Otherwise, correct grammar, spelling, and slang.
-- If there are multiple questions, split them.
+- If the query contains multiple parts or topics, split them into separate questions, even if they are grammatically joined.
 - Do NOT assume or add new information.
 - Return valid JSON in the format:
-{{ "Q1": "question 1", "Q2": "question 2" }}
+{{ "Q1": "question 1", "Q2": "question 2", ... }}
 
 Only return JSON. No explanation or extra lines.
 
 Query: {query}
-        """.strip()
+""".strip()
 
     def _extract_json(self, response_text: str) -> Optional[Dict[str, str]]:
         match = re.search(r'\{[\s\S]*?\}', response_text)
