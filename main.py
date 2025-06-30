@@ -10,6 +10,7 @@ from src.services.vector_storage_service import VectorStorageManager
 from src.services.chunking_process import SemanticChunkerWithNLP
 from src.services.loading_documents import DocumentLoader
 from src.services.QueryTransformation import QueryTransformation
+from src.services.reranking_process import RerankingProcess
 
 load_dotenv()
 
@@ -17,6 +18,7 @@ query_transformer = QueryTransformation()
 document_loader = DocumentLoader()
 semantic_chunker_nlp = SemanticChunkerWithNLP()
 vector_store_manager = VectorStorageManager()
+reranking_process = RerankingProcess()
 
 st.set_page_config(page_title="RAG System", layout="wide")
 st.title("📄 Retrieval-Augmented Generation (RAG) System")
@@ -30,13 +32,20 @@ defaults = {
     "load_document": False,
     "vector_store": None,
     "chat_history": [],
-    "local_data_folder_path": ""
+    "local_data_folder_path": "",
+    "use_reranking": True,
+    "rerank_top_k": 5 
 }
 for key, val in defaults.items():
     st.session_state.setdefault(key, val)
 
 st.session_state.document_location = st.sidebar.selectbox("Document Source", ("Local", "Google Drive"))
 st.session_state.storage_type = st.sidebar.selectbox("Vector Storage Type", ("Old", "New"))
+
+st.session_state.use_reranking = st.sidebar.checkbox("Enable Reranking", value=st.session_state.use_reranking)
+if st.session_state.use_reranking:
+    st.session_state.rerank_top_k = st.sidebar.slider("Top K after Reranking", min_value=1, max_value=10, value=st.session_state.rerank_top_k)
+
 
 def handle_folder_selection():
     if st.session_state.document_location == "Local":
@@ -121,6 +130,9 @@ if st.session_state.chat_history:
                 st.markdown(f"**Q{i+1}:** {q['question']}")
                 st.markdown(f"**Context:**\n\n{q['context']}")
 
+                if 'rerank_scores' in q and q['rerank_scores']:
+                    st.markdown(f"**Reranking Scores:** {', '.join(q['rerank_scores'])}")
+
         with st.expander(f"🛡️  View Response Validation Result", expanded=False):
             st.markdown(chat["validation"])
 
@@ -143,14 +155,57 @@ if user_query:
             final_query_context = []
 
             for key, query in processed_queries.items():
+                # top_docs = retriever.get_relevant_documents(query)
+
+                # reranked_docs = reranking_process.rerank(query, top_docs)
+                # selected_docs = reranked_docs[:st.session_state.rerank_top_k]
+                # context_docs = [doc for doc, score in selected_docs]
+                # rerank_scores = [f"{score:.4f}" for doc, score in selected_docs]
+
+                # context_str = "\n\n".join([doc.page_content for doc in top_docs[:5]])
+                # final_query_context.append({"question": query, "context": f"[{context_str}]"})
+                # context_str = "\n\n".join([doc.page_content for doc in context_docs])
+                # final_query_context.append({
+                #             "question": query, 
+                #             "context": f"[{context_str}]",
+                #             "rerank_scores": rerank_scores
+                #         })
+
+                 # Get initial documents from vector store
                 top_docs = retriever.get_relevant_documents(query)
-                context_str = "\n\n".join([doc.page_content for doc in top_docs[:5]])
-                final_query_context.append({"question": query, "context": f"[{context_str}]"})
+                
+                # Apply reranking if enabled
+                if st.session_state.use_reranking:
+                    with st.spinner(f"🔄 Reranking documents for query: {key}..."):
+                        reranked_docs = reranking_process.rerank(query, top_docs)
+                        
+                        # Extract top-k documents and their scores
+                        selected_docs = reranked_docs[:st.session_state.rerank_top_k]
+                        context_docs = [doc for doc, score in selected_docs]
+                        rerank_scores = [f"{score:.4f}" for doc, score in selected_docs]
+                        
+                        context_str = "\n\n".join([doc.page_content for doc in context_docs])
+                        final_query_context.append({
+                            "question": query, 
+                            "context": f"[{context_str}]",
+                            "rerank_scores": rerank_scores
+                        })
+                else:
+                    # Use original top-5 without reranking
+                    context_str = "\n\n".join([doc.page_content for doc in top_docs[:5]])
+                    final_query_context.append({
+                        "question": query, 
+                        "context": f"[{context_str}]",
+                        "rerank_scores": None
+                    })
 
             with st.expander("📚 View Retrieved Contexts", expanded=False):
                 for i, q in enumerate(final_query_context):
                     st.markdown(f"**Q{i+1}:** {q['question']}")
                     st.markdown(f"**Context:**\n\n{q['context']}")
+
+                    if st.session_state.use_reranking and q.get('rerank_scores'):
+                        st.markdown(f"**Reranking Scores:** {', '.join(q['rerank_scores'])}")
 
             query_context_string = ""
             for idx, item in enumerate(final_query_context):
