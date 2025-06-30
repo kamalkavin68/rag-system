@@ -35,6 +35,12 @@ A powerful **Retrieval-Augmented Generation (RAG)** system that seamlessly integ
 
 ![Query Flow](./documentation/Retrieval-Reranking-Flow.svg)
 
+## Retrieval & Reranking Strategies
+
+![Query Flow](./documentation/validate-response-img.svg)
+
+
+
 ### Architecture Components
 
 | Component | Technology | Purpose |
