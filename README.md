@@ -37,7 +37,7 @@ A powerful **Retrieval-Augmented Generation (RAG)** system that seamlessly integ
 
 ## Retrieval & Reranking Strategies
 
-![Query Flow](./documentation/validate-response-img.svg)
+![Query Flow](./documentation/validate-response-img-2.svg)
 
 
 
