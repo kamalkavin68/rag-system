@@ -23,7 +23,7 @@ A powerful **Retrieval-Augmented Generation (RAG)** system that seamlessly integ
 
 ![Screenshot](./documentation/rag-architecture.gif)
 
-![Screenshot](./documentation/query-transformation.html)
+[INCLUDE: ./documentation/query-transformation.html]
 
 ### Architecture Components
 
