@@ -31,6 +31,9 @@ A powerful **Retrieval-Augmented Generation (RAG)** system that seamlessly integ
 
 ![Query Flow](./documentation/Chunking-Strategies.svg)
 
+## Retrieval & Reranking Strategies
+
+![Query Flow](./documentation/Retrieval-Reranking-Flow.svg)
 
 ### Architecture Components
 
