@@ -1,6 +1,6 @@
 # Google Drive RAG System
 
-A powerful **Retrieval-Augmented Generation (RAG)** system that seamlessly integrates with Google Drive, enabling intelligent document querying and AI-powered responses using **Anthropic Claude**, **ChromaDB**, and **Google Embeddings**.
+A powerful **Retrieval-Augmented Generation (RAG)** system that seamlessly integrates with Google Drive, enabling intelligent document querying and AI-powered responses using **Anthropic Claude**, **ChromaDB/FAISS**, and **Google Embeddings**.
 
 ![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
 ![Streamlit](https://img.shields.io/badge/streamlit-v1.28+-red.svg)
