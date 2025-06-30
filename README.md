@@ -139,7 +139,7 @@ Enhanced Score: 0.85 minimum threshold
 
 This analysis computes the **cosine similarity** between a set of documents. Cosine similarity helps identify how closely related the text content of different documents is, based on their vector representations.
 
-### 📄 Input Documents
+### Input Documents
 
 1. **Document 0**:  
    *"The Amazon rainforest, Paris is the capital of France. It is known for the Eiffel Tower."*
@@ -163,7 +163,7 @@ This analysis computes the **cosine similarity** between a set of documents. Cos
 
 The cosine similarity score ranges from **0 (completely different)** to **1 (identical)**. The matrix below shows pairwise similarity among the documents.
 
-### 📊 Similarity Graph
+### Similarity Graph
 
 Below is a visual representation of the cosine similarity values between the documents:
 
