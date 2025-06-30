@@ -175,9 +175,9 @@ Below is a visual representation of the cosine similarity values between the doc
 
 ### 🧠 Observations
 
-- Documents 1, 2, 3, and 6 contain the word “Amazon” and show stronger similarities.
-- Document 4 and 5 are contextually unrelated to the “Amazon” topic and have low similarity to others.
-- Document 6 ("Amazon") acts like a keyword, showing moderate similarity with all Amazon-related documents.
+- Documents 0, 1, 2, and 5 contain the word “Amazon” and show stronger similarities.
+- Document 3 and 4 are contextually unrelated to the “Amazon” topic and have low similarity to others.
+- Document 5 ("Amazon") acts like a keyword, showing moderate similarity with all Amazon-related documents.
 
 ---
 
