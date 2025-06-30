@@ -238,7 +238,7 @@ The validator uses the same LLM architecture as the response generator but with 
 | **Query Transformation** | LLM-based QueryTransformation | Multi-query generation and decomposition | Context completeness |
 | **Text Chunking** | SemanticChunkerWithNLP | Intelligent document segmentation | Semantic coherence |
 | **Embeddings** | Google Generative AI (embedding-001) | Vector representation generation | High-quality embeddings |
-| **Vector Database** | FAISS with ChromaDB | Similarity search and storage | Performance and persistence |
+| **Vector Database** | FAISS / ChromaDB | Similarity search and storage | Performance and persistence |
 | **Enhanced Retrieval** | MMR + Advanced Reranking | Context-aware document retrieval | Relevance optimization |
 | **Response Generation** | Anthropic Claude 3.5 Sonnet | AI response generation | Context-aware responses |
 | **Validation Layer** | Claude-based Response Validator | Quality assurance and hallucination detection | Response reliability |
