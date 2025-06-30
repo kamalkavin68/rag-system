@@ -121,18 +121,6 @@ This diagram illustrates the sophisticated retrieval system that maximizes conte
 
 **Vector Retrieval:**
 - **Vector Retrieval**: Performs initial similarity search against the vector database using cosine similarity
-- **cosine similarity**
-- ```
-documents = [
-    "The Amazon rainforest, Paris is the capital of France. It is known for the Eiffel Tower.",
-    "The Amazon rainforest is the largest tropical rainforest in the world.",
-    "The Amazon online shopping platform is one of the largest e-commerce companies.",
-    "The moon is Earth's only natural satellite.",
-    "Basketball is a sport played by two teams of five players.",
-    "Amazon"
-]
-```
-- ![Query Flow](./documentation/output-2.png)
 
 **Advanced Reranking Process:**
 The system implements a multi-factor scoring approach:
