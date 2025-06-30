@@ -159,6 +159,10 @@ This analysis computes the **cosine similarity** between a set of documents. Cos
 6. **Document 5**:  
    *"Amazon"*
 
+
+   **Query**
+   *"Amazon rainforest"*
+
 ### 🔍 Cosine Similarity
 
 The cosine similarity score ranges from **0 (completely different)** to **1 (identical)**. The matrix below shows pairwise similarity among the documents.
