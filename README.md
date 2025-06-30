@@ -29,7 +29,7 @@ A powerful **Retrieval-Augmented Generation (RAG)** system that seamlessly integ
 
 ## Chunking Strategies
 
-![Query Flow](./documentation/Chunking Strategies.svg)
+![Query Flow](./documentation/Chunking-Strategies.svg)
 
 
 ### Architecture Components
