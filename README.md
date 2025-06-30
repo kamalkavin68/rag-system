@@ -503,6 +503,6 @@ drive_folder_id = "1a2b3c4d5e6f7g8h9i0j"
 
 ---
 
-**Built with advanced AI optimization techniques**
+**Built with ❤️ and curiosity for AI innovation**
 
 [Star this repo](https://github.com/kamalkavin68/rag-system) | [Report Bug](https://github.com/kamalkavin68/rag-system/issues) | [Request Feature](https://github.com/kamalkavin68/rag-system/issues)
