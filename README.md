@@ -441,10 +441,8 @@ Navigate to `http://localhost:8501` in your browser.
 ### System Performance Characteristics
 
 - **Document Processing**: Efficient batch processing with semantic preservation
-- **Query Response Time**: < 3 seconds for typical queries with 10-chunk retrieval
 - **Vector Search**: Sub-second similarity search with FAISS optimization
 - **Memory Usage**: Optimized session state management with persistent storage
-- **Scalability**: Supports multiple concurrent users with isolated vector stores
 
 ## Usage Examples
 
