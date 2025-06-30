@@ -135,6 +135,59 @@ Final Score = Cosine Similarity + Entity Bonus + Noun Bonus + Chunk Bonus
 Enhanced Score: 0.85 minimum threshold
 ```
 
+**Cosine Similarity Between Documents**
+
+This analysis computes the **cosine similarity** between a set of documents. Cosine similarity helps identify how closely related the text content of different documents is, based on their vector representations.
+
+### 📄 Input Documents
+
+1. **Document 0**:  
+   *"The Amazon rainforest, Paris is the capital of France. It is known for the Eiffel Tower."*
+
+2. **Document 1**:  
+   *"The Amazon rainforest is the largest tropical rainforest in the world."*
+
+3. **Document 2**:  
+   *"The Amazon online shopping platform is one of the largest e-commerce companies."*
+
+4. **Document 3**:  
+   *"The moon is Earth's only natural satellite."*
+
+5. **Document 4**:  
+   *"Basketball is a sport played by two teams of five players."*
+
+6. **Document 5**:  
+   *"Amazon"*
+
+### 🔍 Cosine Similarity
+
+The cosine similarity score ranges from **0 (completely different)** to **1 (identical)**. The matrix below shows pairwise similarity among the documents.
+
+### 📊 Similarity Graph
+
+Below is a visual representation of the cosine similarity values between the documents:
+
+![Cosine Similarity Graph](./documentation/output-3.png)
+
+> In the graph, higher similarity scores are shown with thicker or darker lines (or closer nodes), while unrelated documents appear further apart or disconnected.
+
+---
+
+### 🧠 Observations
+
+- Documents 1, 2, 3, and 6 contain the word “Amazon” and show stronger similarities.
+- Document 4 and 5 are contextually unrelated to the “Amazon” topic and have low similarity to others.
+- Document 6 ("Amazon") acts like a keyword, showing moderate similarity with all Amazon-related documents.
+
+---
+
+### ✅ Conclusion
+
+Cosine similarity is effective for:
+- Identifying document clusters by topic
+- Understanding semantic relationships
+- Improving retrieval tasks in search and RAG pipelines
+
 **Output:**
 - **Retrieved Chunks**: Top-ranked document segments that provide the most relevant context for response generation
 
