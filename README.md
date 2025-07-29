@@ -9,7 +9,7 @@ A powerful **Retrieval-Augmented Generation (RAG)** system that seamlessly integ
 ![Google AI](https://img.shields.io/badge/google--ai-embeddings--001-4285f4.svg)
 ![ChromaDB](https://img.shields.io/badge/chromadb-vector--store-orange.svg)
 
-## ✨ Features:
+## ✨ Features
 
 - 📁 **Google Drive Integration** - Direct document loading from Google Drive folders
 - 🔍 **Intelligent Document Search** - Vector-based similarity search using ChromaDB
